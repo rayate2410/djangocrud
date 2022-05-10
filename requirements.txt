@@ -1,0 +1,4 @@
+Django==2.1.15
+django-localflavor==2.2
+python-stdnum==1.17
+pytz==2022.1

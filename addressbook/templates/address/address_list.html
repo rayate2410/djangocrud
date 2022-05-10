@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block 'container'%}
+    <h1 class="mt-5">Hello {{ request.user.username }}! Manage your addresses <a href="{% url 'address_create' %}" class="btn btn-primary">Add</a></h1> 
+    {% for address in address_list %}
+        <div class="card">
+            <div class="card-header">
+            {{ address.full_name }}
+            </div>
+            <div class="card-body">
+                <p class="card-text">
+                    {{ address.address_first_line }} <br/>
+                    {{ address.address_second_line|default:"" }} {% if address.address_second_line %} <br/> {% endif %}
+                    {{ address.landmark|default:"" }} {% if address.landmark %} <br/> {% endif %}
+                    {{ address.town_or_city|default:"" }}, {{ address.get_state_display }} <br/>
+                    Pin code: {{ address.pincode }} <br/>
+                    Address type: {{ address.get_address_type_display }}
+                </p>
+                <a href="{% url 'address_edit' pk=address.id %}" class="btn btn-info">Edit</a>
+                <a href="{% url 'address_delete' pk=address.id %}" class="btn btn-danger">Delete</a>
+            </div>
+        </div>
+        <br/>
+        {% empty %}
+            <p>No addresses found</p>        
+    {% endfor %}
+{% endblock %}

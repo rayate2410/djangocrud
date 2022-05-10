@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block 'container'%}
+    {% if form.instance.pk %}
+    <h1 class="mt-5">Edit address</h1> 
+    {% else %}
+    <h1 class="mt-5">Add new address</h1> 
+    {% endif %}
+    <form class="form-horizontal" method="post">
+        {% csrf_token %}
+        <fieldset>
+            {% for field in form %}
+                {% if field.name == 'user' %}
+                <input type="hidden" name="user" value="{{ request.user.id }}">
+                {% else %}
+                    <div class="form-group">
+                        {{ field.errors }}
+                        {{ field.label_tag}} {{field }}
+                    </div>
+                {% endif %}
+            {% endfor %}
+        </fieldset>
+        <a href="{% url 'address_list' %}" class="btn btn-danger">Cancel</a>
+        <input type="submit" class="btn btn-info" value="Save">
+    </form>    
+{% endblock %}
