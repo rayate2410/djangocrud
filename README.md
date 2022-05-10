@@ -34,7 +34,7 @@
   ```
   
   ## Docker image
-  This project has a minimalistic docker file. And the docker image is available <here>. To use this docker image, follow below steps. (Assumption is that docker is installed on your linux box)
+  This project has a minimalistic docker file. And the docker image is uploaded to dockerhub here https://hub.docker.com/r/rayate2410/django-address-book. To use this docker image, follow below steps. (Assumption is that docker is installed on your linux box)
   ```
   docker run -it -p <PORT>:8000 rayate2410/django-address-book:latest
   # Example
